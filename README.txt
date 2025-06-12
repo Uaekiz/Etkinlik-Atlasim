@@ -1,4 +1,4 @@
-UMUT ARDA EKİZ [Uaekz]
+UMUT ARDA EKİZ [Uaekiz]
 He led the overall concept development and coordinated the connection between the site’s main pages. He designed the core layout, visuals, and initial code for the MainPage, Events, and MyEvents sections. He also handled debugging and improvements in key areas, taking on a coordinating role thanks to his vision for the project.
 
 FARUK TURNALI [farukk06]
