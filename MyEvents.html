@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="MainCSS.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
+    <title>Etkinlik Atlasım</title>
+    <link rel="icon" type="image/png" href="faviconn.png">
+  </head>
+
+  <body class="d-flex flex-column min-vh-100" style="background-color: #acd4e2">
+    <main class="flex-fill" style="background-color: #acd4e2">
+      <nav
+        class="navbar navbar-expand-md"
+        style="background-color: aliceblue; border-bottom: 1px solid black; font-family: 'Ubuntu', sans-serif;"
+      >
+        <div class="container-fluid">
+          <a
+          class="navbar-brand logo-wrapper"
+          href="MainPage.html"
+          style="background-color: #acd4e2"
+        >
+          <img src="etkinliklogo.jpg" alt="Etkinlik Atlasım" />
+          </a
+        >
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link" href="MainPage.html" style="font-size: 18px; color: black">Ana Sayfa</a></li>
+              <li class="nav-item"><a class="nav-link" href="Events.html" style="font-size: 18px; color: black">Etkinlikler</a></li>
+              <li class="nav-item"><a class="nav-link" href="MyEvents.html" style="font-size: 18px; color: black">Etkinliklerim</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container my-5" id="eventContainer">
+        <h2 class="text-center mb-4">Başvurduğunuz Etkinlikler</h2>
+        <div class="row justify-content-center" id="eventCards"></div>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2025 Etkinlik Atlasım. Tüm hakları saklıdır.</p>
+      <p>
+        İletişim:
+        <a href="mailto:destek@etkinlikatlasim.com"
+          >destek@etkinlikatlasim.com</a
+        >
+      </p>
+    </footer>
+
+    <!-- Toast -->
+    <div id="toast" class="position-fixed bottom-0 end-0 m-4 p-3 bg-success text-white rounded"
+      style="opacity: 0; transition: opacity 0.5s; z-index: 9999">
+      Etkinliğiniz iptal edilmiştir.
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header text-white"style="background-color: 	#8ecae6;">
+            <h5 class="modal-title" id="confirmModalLabel">Etkinliği İptal Et</h5>
+            <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="modal" aria-label="Kapat"></button>
+          </div>
+          <div class="modal-body">Bu etkinliği iptal etmek istediğinize emin misiniz?</div>
+          <div class="modal-footer">
+            <button type="button" class="btn text-white" style="background-color: 	#adb5bd;" data-bs-dismiss="modal">Hayır</button>
+            <button type="button" class="btn btn-danger" id="modalConfirmBtn">Evet, İptal Et</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showToast(message, bgColor = "#27ae60") {
+        const toast = document.getElementById("toast");
+        toast.textContent = message;
+        toast.style.backgroundColor = bgColor;
+        toast.style.opacity = 1;
+        setTimeout(() => {
+          toast.style.opacity = 0;
+        }, 3000);
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const eventCards = document.getElementById("eventCards");
+        const oyunKodlari = ["fare", "sefiller", "deli"];
+        const konserKodlari = ["milyonfest", "sakaryafest", "zeytin-rock"];
+        const geziKodlari = ["çanak", "fırat", "bogaz"];
+        let etkinlikVar = false;
+        let deleteTarget = null;
+
+        // TİYATRO
+        oyunKodlari.forEach((oyunKodu) => {
+          let i = 1;
+          while (true) {
+            const name = localStorage.getItem(`${oyunKodu}_name${i}`);
+            const seats = localStorage.getItem(`${oyunKodu}_takenSeats${i}`);
+            const total = localStorage.getItem(`${oyunKodu}_price${i}`);
+            const eventName = localStorage.getItem(`${oyunKodu}_eventName${i}`);
+            const place = localStorage.getItem(`${oyunKodu}_eventPlace${i}`);
+            const date = localStorage.getItem(`${oyunKodu}_eventDate${i}`);
+            if (!eventName || !place || !date) break;
+            etkinlikVar = true;
+
+            const card = document.createElement("div");
+            card.className = "col-lg-4 col-md-6 col-sm-12 mb-4";
+            card.innerHTML = `
+              <div class="card shadow-sm h-100" style="position: relative;">
+                <div class="card-body">
+                  <button class="cancel-btn btn btn-sm btn-danger" data-key="${oyunKodu}_name${i}" style="position:absolute; top:10px; right:10px;">İptal Et</button>
+                  <h5 class="card-title">${eventName}</h5>
+                  <p><strong>Katılımcı:</strong> ${name || "Bilinmiyor"}</p>
+                  <p><strong>Koltuklar:</strong> ${JSON.parse(seats).join(", ")}</p>
+                  <p><strong>Konum:</strong> ${place}</p>
+                  <p><strong>Tarih:</strong> ${date}</p>
+                  <p class="text-success"><strong>Toplam:</strong> ${total} TL</p>
+                </div>
+              </div>`;
+            eventCards.appendChild(card);
+            i++;
+          }
+        });
+
+        // KONSER
+        konserKodlari.forEach((konserKodu) => {
+          let i = 1;
+          while (true) {
+            const name = localStorage.getItem(`${konserKodu}_bilgi${i}`);
+            const eventName = localStorage.getItem(`${konserKodu}_etkinlik${i}`);
+            const place = localStorage.getItem(`${konserKodu}_konum${i}`);
+            const date = localStorage.getItem(`${konserKodu}_tarih${i}`);
+            const total = localStorage.getItem(`${konserKodu}_fiyat${i}`);
+            if (!eventName || !place || !date) break;
+            etkinlikVar = true;
+
+            const card = document.createElement("div");
+            card.className = "col-lg-4 col-md-6 col-sm-12 mb-4";
+            card.innerHTML = `
+              <div class="card shadow-sm h-100" style="position: relative;">
+                <div class="card-body">
+                  <button class="cancel-btn btn btn-sm btn-danger" data-key="${konserKodu}_bilgi${i}" style="position:absolute; top:10px; right:10px;">İptal Et</button>
+                  <h5 class="card-title">${eventName}</h5>
+                  <p><strong>Katılımcı:</strong> ${name || "Bilinmiyor"}</p>
+                  <p><strong>Konum:</strong> ${place}</p>
+                  <p><strong>Tarih:</strong> ${date}</p>
+                  <p class="text-success"><strong>Toplam:</strong> ${total}</p>
+                </div>
+              </div>`;
+            eventCards.appendChild(card);
+            i++;
+          }
+        });
+
+        // GEZİ
+        geziKodlari.forEach((geziKodu) => {
+          let i = 1;
+          while (true) {
+            const name = localStorage.getItem(`${geziKodu}_adSoyad${i}`);
+            const turSaati = localStorage.getItem(`${geziKodu}_turSaati${i}`);
+            const seats = localStorage.getItem(`${geziKodu}_koltuklar${i}`);
+            const total = localStorage.getItem(`${geziKodu}_toplamUcret${i}`);
+            const konum = localStorage.getItem(`${geziKodu}_konum${i}`);
+            if (!name || !seats || !konum) break;
+            etkinlikVar = true;
+
+            const card = document.createElement("div");
+            card.className = "col-lg-4 col-md-6 col-sm-12 mb-4";
+            card.innerHTML = `
+              <div class="card shadow-sm h-100" style="position: relative;">
+                <div class="card-body">
+                  <button class="cancel-btn btn btn-sm btn-danger" data-key="${geziKodu}_adSoyad${i}" style="position:absolute; top:10px; right:10px;">İptal Et</button>
+                  <h5 class="card-title">${konum}</h5>
+                  <p><strong>Katılımcı:</strong> ${name}</p>
+                  <p><strong>Koltuklar:</strong> ${seats}</p>
+                  <p><strong>Tur Saati:</strong> ${turSaati}</p>
+                  <p class="text-success"><strong>Toplam:</strong> ${total}</p>
+                </div>
+              </div>`;
+            eventCards.appendChild(card);
+            i++;
+          }
+        });
+
+        if (!etkinlikVar) {
+          eventCards.innerHTML = `
+            <div class="col-12 text-center text-muted">
+              <p>Henüz bir etkinliğe başvurmamışsınız.</p>
+            </div>`;
+        }
+
+        // Tıklanan kartı geçici olarak tut
+        document.querySelectorAll(".cancel-btn").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            deleteTarget = this;
+            const confirmModal = new bootstrap.Modal(document.getElementById("confirmModal"));
+            confirmModal.show();
+          });
+        });
+
+        // Modal onay butonuna basıldığında silme işlemi
+        document.getElementById("modalConfirmBtn").addEventListener("click", function () {
+          if (!deleteTarget) return;
+
+          const fullKey = deleteTarget.dataset.key;
+          const match = fullKey.match(/^([a-zçğüşıö-]+)_[a-zA-Z0-9]+(\d+)$/);
+          if (!match) return;
+
+          const prefix = match[1];
+          const index = match[2];
+
+          const keysToRemove = Object.keys(localStorage).filter(
+            (k) => k.startsWith(`${prefix}_`) && k.endsWith(index)
+          );
+          keysToRemove.forEach((k) => localStorage.removeItem(k));
+
+          const card = deleteTarget.closest(".col-lg-4");
+          if (card) card.remove();
+
+          if (document.querySelectorAll("#eventCards .col-lg-4").length === 0) {
+            eventCards.innerHTML = `
+              <div class="col-12 text-center text-muted">
+                <p>Henüz bir etkinliğe başvurmamışsınız.</p>
+              </div>`;
+          }
+
+          const confirmModal = bootstrap.Modal.getInstance(document.getElementById("confirmModal"));
+          confirmModal.hide();
+          showToast("Etkinliğiniz iptal edilmiştir.", "#e74c3c");
+          deleteTarget = null;
+        });
+      });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+  }
+  .etkinlik-hero {
+    padding: 2rem;
+    color: white;
+  }
+  
+  .etkinlik-filtre {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .flip-card {
+    background-color: transparent;
+    width: 400px;
+    height: 266px;
+    perspective: 1000px; /* 3D efekti */
+    margin: 10px auto;
+    
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.resim-yazi {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  text-align: center;
+  font-size: 18px;
+}
+
+  
+  .flip-card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .flip-card-back {
+    background-color: #3A7CA5;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    transform: rotateY(180deg);
+  }
+  
+  
+  

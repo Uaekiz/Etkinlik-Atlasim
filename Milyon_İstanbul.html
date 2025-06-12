@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Milyonfest İstanbul</title>
+    <link rel="icon" type="image/png" href="faviconn.png">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="konser.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
+
+    <script defer src="konser.js"></script>
+  </head>
+
+  <body
+    style="
+      background: url('Images/Etkinlik\ Afiş/istanbul_konser.jpg') no-repeat
+        center center fixed;
+    "
+  >
+    <nav
+      class="navbar navbar-expand-md"
+      style="
+        background-color: aliceblue;
+        border-bottom: 1px solid black;
+        font-family: 'Ubuntu', sans-serif;
+      "
+    >
+      <div class="container-fluid">
+        <a
+          class="navbar-brand logo-wrapper"
+          href="MainPage.html"
+          style="background-color: #acd4e2"
+        >
+          <img src="etkinliklogo.jpg" alt="Etkinlik Atlasım" />
+          </a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="MainPage.html">Ana Sayfa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Events.html">Etkinlikler</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="MyEvents.html">Etkinliklerim</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div class="container">
+        <section class="intro">
+          <h1>Milyonfest İstanbul</h1>
+          <p>Tarih: 17 Temmuz Perşembe - 15:00</p>
+          <p>Konum: İstanbul Milyon Beach Kilyos</p>
+          <p>Sanatçılar: SEMİCENK - ATİ242 - BENGÜ - MOR VE ÖTESİ</p>
+        </section>
+
+        <!-- ADIM 1: Kişi Bilgileri -->
+        <form id="formStep1">
+          <div class="form-group">
+            <label for="fullName">Ad Soyad:</label>
+            <input
+              type="text"
+              id="fullName"
+              placeholder="Ad Soyad"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Telefon:</label>
+            <input
+              type="tel"
+              id="phone"
+              placeholder="(5__) ___ __ __"
+              required
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="emailInput">E-Mail:</label>
+            <input
+              type="email"
+              id="emailInput"
+              list="emailDomains"
+              placeholder="E-posta"
+              required
+              autocomplete="off"
+            />
+            <datalist id="emailDomains"></datalist>
+          </div>
+
+          <div class="form-group">
+            <label for="personCount">Kişi Sayısı (1–6):</label>
+            <input
+              type="number"
+              id="personCount"
+              min="1"
+              max="6"
+              value="1"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary devam-btn">
+            Devam Et
+          </button>
+        </form>
+
+        <!-- ADIM 2: Bilet Seçimi -->
+        <form id="formStep2" style="display: none">
+          <div id="ticketOptions" class="ticket-options">
+            <!-- Kategori Kartları -->
+            <div class="ticket-card" data-price="650">
+              <div class="ticket-left">
+                <h4>Günlük Giriş</h4>
+                <p>17 Temmuz Perşembe - 15:00</p>
+              </div>
+              <div class="ticket-right">
+                <div class="price">650.00 TL</div>
+                <button type="button" class="select-btn">SATIN AL</button>
+              </div>
+            </div>
+
+            <div class="ticket-card" data-price="1250">
+              <div class="ticket-left">
+                <h4>VIP</h4>
+                <p>17 Temmuz Perşembe - 15:00</p>
+              </div>
+              <div class="ticket-right">
+                <div class="price">1120.00 TL</div>
+                <button type="button" class="select-btn">SATIN AL</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fiyat ve KVKK -->
+          <div class="total-display">
+            <span id="totalPrice">0 TL</span>
+          </div>
+
+          <div
+            class="custom-checkbox"
+            style="flex-direction: column; align-items: start"
+          >
+            <label style="display: flex; align-items: center; gap: 8px">
+              <input type="checkbox" id="kvkk" />
+              <span class="checkmark"></span>
+              <a href="kvkk.html" target="_blank">KVKK metnini</a> okudum ve
+              kabul ediyorum.
+            </label>
+            <div
+              id="kvkkError"
+              class="text-danger mt-1"
+              style="display: none; font-size: 14px"
+            >
+              Lütfen KVKK metnini kabul ettiğinizi onaylayınız.
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-success">Satın Al</button>
+        </form>
+
+        <!-- gizli input -->
+        <input type="hidden" id="ticketType" required />
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2025 Etkinlik Atlasım. Tüm hakları saklıdır.</p>
+      <p>
+        İletişim:
+        <a href="mailto:destek@etkinlikatlasim.com"
+          >destek@etkinlikatlasim.com</a
+        >
+      </p>
+    </footer>
+
+    <script>
+      const konserKodu = "milyonfest";
+      const etkinlikAdi = "Milyonfest İstanbul";
+      const konum = "İstanbul Milyon Beach Kilyos";
+      const tarih = "17 Temmuz 2025 , 15.00";
+      const biletKategorileri = [
+        { ad: "Günlük Giriş", fiyat: 336 },
+        { ad: "VIP", fiyat: 1120 },
+      ];
+      const filtreliMi = false;
+    </script>
+    <div id="toast" class="toast-notification"></div>
+  </body>
+</html>

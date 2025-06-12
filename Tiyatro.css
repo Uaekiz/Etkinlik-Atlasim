@@ -1,0 +1,409 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat;
+  background-position: center top;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+
+.background-section {
+  position: relative;
+  padding: 120px 30px;
+  color: white;
+  min-height: 100vh;
+  background: none; 
+}
+
+.background-section::before {
+  content: none; 
+}
+
+
+.background-section h1,
+.background-section .intro-text {
+  position: relative;
+  z-index: 2;
+}
+
+.background-section h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+.container
+{
+  flex: 1;
+  margin-top: 80px;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content 
+{
+  background: rgba(255, 255, 255, 0.85);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.intro-text 
+{
+  background-color: #f4f8fb;
+  padding: 25px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Georgia', serif;
+  color: #2c3e50;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+.intro-text h2 
+{
+  text-align: center;
+  font-size: 28px;
+  color: #1e2a38;
+  margin-bottom: 20px;
+}
+
+.intro-text p 
+{
+  margin-bottom: 14px;
+}
+
+h1, p 
+{
+  text-align: center;
+  color: #2c3e50;
+}
+
+.person {
+  background-color: rgba(255, 255, 255, 0.9); 
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.person input {
+  background-color: #fff;
+  color: black;
+}
+
+
+.person .d-flex 
+{
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.person h3 
+{
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+
+form 
+{
+  display: flex;
+  flex-direction: column;
+}
+
+input, textarea, select 
+{
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+label 
+{
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.seating 
+{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 6px;
+  justify-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.seat 
+{
+  width: 28px;
+  height: 28px;
+  background-color: #ccc;
+  border-radius: 3px;
+  text-align: center;
+  line-height: 28px;
+  font-size: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.seat.selected 
+{
+  background-color: #27ae60;
+  color: white;
+}
+
+.seat.taken 
+{
+  pointer-events: none;
+  color: white;
+  background-color: red;
+}
+
+.stage 
+{
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.price-box 
+{
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.total-price 
+{
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: #27ae60;
+}
+
+button 
+{
+  padding: 10px;
+  font-size: 16px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover 
+{
+  background-color: #219150;
+}
+
+.seating-wrapper 
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kvkk-wrapper 
+{
+  margin-bottom: 15px;
+}
+
+.custom-checkbox 
+{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.custom-checkbox input[type="checkbox"] 
+{
+  display: none;
+}
+
+.custom-checkbox .checkmark 
+{
+  width: 20px;
+  height: 20px;
+  border: 2px solid #219150;
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + .checkmark::after 
+{
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.custom-checkbox input[type="checkbox"]:checked + .checkmark 
+{
+  background-color: #27ae60;
+  border-color: #27ae60;
+}
+
+.custom-checkbox a 
+{
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.custom-checkbox a:hover 
+{
+  color: #0056b3;
+}
+
+@media (max-width: 768px) 
+{
+  .navbar-brand 
+  {
+    font-size: 28px;
+  }
+  
+  .navbar-toggler 
+  {
+    margin-left: auto;
+  }
+
+  .container 
+  {
+    padding: 20px;
+  }
+
+  .content 
+  {
+    padding: 20px;
+    width: 100%;
+  }
+
+  .stage 
+  {
+    width: 100%;
+  }
+
+  .seating 
+  {
+    grid-template-columns: repeat(12,30px);
+    gap: 4px;
+    justify-content: center;
+  }
+
+  .seat
+  {
+    width: 100%;
+    max-width: 28px;
+    font-size: 10px ;
+  }
+
+  input, textarea, select, button 
+  {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) 
+{
+  .seat 
+  {
+    width: 32px;
+    height: 32px;
+    font-size: 10px;
+  }
+
+  .stage 
+  {
+    width: 50%;
+  }
+
+  .seating 
+  {
+    grid-template-columns: repeat(12, 23px); /* daha az koltuk yan yana */
+    justify-content: center;
+    gap: 6px;
+  }
+}
+
+.kaydol-btn {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 15px auto;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.kaydol-btn:hover {
+  background-color: #1f8c4d;
+}
+
+.toast-notification {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #27ae60; /* yeşil başarılı için */
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s ease;
+}
+
+.toast-notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}

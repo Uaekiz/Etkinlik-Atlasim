@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Çanakkale Boğazı Turu</title>
+  <link rel="icon" type="image/png" href="faviconn.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="gezi.css">
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/inputmask.min.js"></script>
+</head>
+
+<body style="background-image: url('Images/Etkinlik\ Afiş/çanakkale.jpg');">
+  <nav class="navbar navbar-expand-md" style="
+          background-color: aliceblue;
+          border-bottom: 1px solid black;
+          font-family: 'Ubuntu', sans-serif;
+        ">
+    <div class="container-fluid">
+      <a
+          class="navbar-brand logo-wrapper"
+          href="MainPage.html"
+          style="background-color: #acd4e2"
+        >
+          <img src="etkinliklogo.jpg" alt="Etkinlik Atlasım" />
+          </a
+        >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="MainPage.html" style="font-size: 18px; color: black">Ana Sayfa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Events.html" style="font-size: 18px; color: black">Etkinlikler</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="MyEvents.html" style="font-size: 18px; color: black">Etkinliklerim</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <div class="container">
+
+
+      <h1>Çanakkale Boğaz Turu</h1>
+      <p style="text-align: center; margin-bottom: 15px; font-size: 15px">
+        Tarihin kalbine uzanan bir deniz yolculuğuna hazır olun!
+        Çanakkale Boğazı’nda yapacağınız bu eşsiz turda, Seyit Onbaşı’nın destanı,
+        Kilitbahir’in heybeti ve Gelibolu’nun sessiz tanıklığı sizleri bekliyor.
+      </p>
+
+      <form id="form">
+        <div class="route-info">
+          <strong>Tur Güzergâhı:</strong><br />
+          Çanakkale Merkez İskelesi → Kilitbahir Kalesi → Namazgâh Tabyası ve Mecidiye Tabyası → Gelibolu Yarımadası
+          Şehitlikleri → Kumkale ve Morto Koyu
+        </div>
+        <div id="step1">
+          <div class="form-row">
+            <label for="adsoyad">Ad Soyad:</label>
+            <input type="text" id="adsoyad" required autocomplete="off" placeholder="Ad Soyad"/>
+          </div>
+          <span id="adsoyad-error" style="color: red; display: none; font-size: 14px; margin-top: 5px">
+            Ad ve soyad girmelisiniz.
+          </span>
+
+          <div class="form-row">
+            <label for="telefon">Telefon:</label>
+            <input type="tel" id="telefon" required autocomplete="off" placeholder="0(5__) ___ __ __"/>
+          </div>
+          <span id="telefon-error" style="color: red; display: none; font-size: 14px; margin-top: 5px">Lütfen 11 haneli
+            bir telefon numarası giriniz.</span>
+
+          <div class="form-row">
+            <label for="turSaatiSelect">Tur Saati:</label>
+            <select id="turSaatiSelect" required>
+              <option value="">Saat seçiniz</option>
+              <option>10:00 - 12:00</option>
+              <option>13:00 - 15:00</option>
+              <option>16:00 - 18:00</option>
+              <option>19:00 - 21:00 (Gün Batımı)</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="kisi">Kişi sayısı? (1–4):</label>
+            <input type="number" id="kisi" min="1" max="4" value="1" required />
+          </div>
+          <button type="button" id="nextBtn" class="continue-btn">
+            Devam Et
+          </button>
+        </div>
+
+        <div id="step2" style="display: none">
+          <div class="form-row">
+            <label>Ekstra Hizmetler:</label>
+          </div>
+          <div class="checkbox-group">
+            <div class="ekstra-item">
+              <label class="custom-checkbox">
+                <input type="checkbox" name="ekstra" value="cay" />
+                <span class="checkmark"></span>
+                <span>Çay Servisi (15 TL)</span>
+              </label>
+              <input type="number" min="1" max="10" value="1" class="ekstra-adet" data-type="cay" />
+            </div>
+
+            <div class="ekstra-item">
+              <label class="custom-checkbox">
+                <input type="checkbox" name="ekstra" value="foto" />
+                <span class="checkmark"></span>
+                <span>Anı Fotoğrafı (100 TL)</span>
+              </label>
+              <input type="number" min="1" max="10" value="1" class="ekstra-adet" data-type="foto" />
+            </div>
+
+            <div class="ekstra-item">
+              <label class="custom-checkbox">
+                <input type="checkbox" name="ekstra" value="rehber" />
+                <span class="checkmark"></span>
+                <span>Rehberlik Hizmeti (75 TL)</span>
+              </label>
+            </div>
+
+
+            <div class="form-row kat-secimi-wrapper">
+              <label style="margin-right: 10px;">Kat Seçimi:</label>
+              <div class="deck-buttons">
+                <button type="button" class="deck-btn active" data-deck="alt">Alt Kat</button>
+                <button type="button" class="deck-btn" data-deck="ust">Üst Kat</button>
+              </div>
+            </div>
+
+
+            <label>Koltuk Seçimi:</label>
+            <div id="seat-selection"></div>
+
+            <h3 style="margin-top: 30px; font-size: 17px; color: #333">
+              Koltuk No & Bilet Türü
+            </h3>
+            <div id="ticket-types"></div>
+
+            <div style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-top: 20px;
+            ">
+              <span style="font-weight: bold">Toplam Ücret:</span>
+              <span id="total-price" style="font-size: 18px; font-weight: bold">0 TL</span>
+            </div>
+            <div class="kvkk-wrapper">
+              <label class="custom-checkbox">
+                <input type="checkbox" id="kvkkCheck" />
+                <span class="checkmark"></span>
+                <span style="color: black;"><a href="kvkk.html" target="_blank">KVKK metnini</a> okudum ve
+                  kabul ediyorum.</span>
+              </label>
+              <div id="kvkkError" class="text-danger mt-1" style="display: none; font-size: 14px">
+                Lütfen KVKK metnini kabul ettiğinizi onaylayınız.
+              </div>
+            </div>
+
+            <button type="submit">Başvuruyu Gönder</button>
+            <div class="success-message" id="successMessage">
+              Başvurunuz başarıyla alındı! Teşekkür ederiz.
+            </div>
+          </div>
+      </form>
+    </div>
+  </main>
+
+      <footer>
+      <p>© 2025 Etkinlik Atlasım. Tüm hakları saklıdır.</p>
+      <p>
+        İletişim:
+        <a href="mailto:destek@etkinlikatlasim.com"
+          >destek@etkinlikatlasim.com</a
+        >
+      </p>
+    </footer>
+  <script>
+    window.geziKodu = "çanak";
+    window.turAdı = "Çanakkale Boğaz Turu";
+    window.fiyatlar = {
+      alt: { tam: 28, ogrenci: 18 },
+      ust: { tam: 38, ogrenci: 5 },
+      ekstra: { cay: 15, foto: 100, rehber: 75 }
+    };
+  </script>
+  <script defer src="gezi.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <div id="toast" class="toast-box"></div>
+</body>
+
+</html>
