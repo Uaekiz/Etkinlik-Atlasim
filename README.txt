@@ -1,10 +1,10 @@
-UMUT ARDA EKİZ
+UMUT ARDA EKİZ [Uaekz]
 He led the overall concept development and coordinated the connection between the site’s main pages. He designed the core layout, visuals, and initial code for the MainPage, Events, and MyEvents sections. He also handled debugging and improvements in key areas, taking on a coordinating role thanks to his vision for the project.
 
-FARUK TURNALI
+FARUK TURNALI [farukk06]
 He took on the main responsibility for the theater and concert sections, shaping their structure and content. Some of his ideas were also applied more broadly across the entire site, and in certain parts of the tour section as well. In addition to this, he contributed to visual enhancements and played an active role in debugging and improving various features.
 
-ALİ CANER SEZER
+ALİ CANER SEZER [alicaners]
 He mainly contributed to the tour section of the site, taking an active role in shaping its structure and features. He also led the design and implementation of the site’s top navigation menu and icon elements. Additionally, he made small functional improvements that enhanced the overall usability of the website.
 
 While making the website;
